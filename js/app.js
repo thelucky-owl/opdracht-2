@@ -7,18 +7,28 @@ const fileCheckButton = document.querySelector("#file-check")
 const textOutput = document.querySelector("#textOutput")
 const upload = document.querySelector('#image')
 const resultDiv = document.getElementById('result')
+const checkBtn = document.querySelector("#check");
 featureExtractor.load(filesOrPath = "https://thelucky-owl.github.io/opdracht-2/model/ml5 model.json");
+checkBtn.addEventListener("click", () => classifyImage());
 
-fileCheckButton.addEventListener("change", (event) =>classifyImage(event));
-speak("hello")
+fileCheckButton.addEventListener("change", (event) =>addImage(event));
+
+speak("hello, can you show me a picture of a pigeon?")
+function addImage(event){
+  upload.src = URL.createObjectURL(event.target.files[0])
+}
+
 function classifyImage(event){
-    upload.src = URL.createObjectURL(event.target.files[0])
+  
     classifier.classify(document.getElementById('image'), (err, result) => showResult(result));
 }
 function showResult(result){
+  if(result[0].label == "pigeon"){
+    speak("hey you found a "+result[0].label)
+  }else{
+    speak(" actually that's a "+result[0].label)
+  }
 
-  console.log(result)
-  speak(result[0].label)
   resultDiv.innerText = result[0].label
 }
 function modelLoaded() {
