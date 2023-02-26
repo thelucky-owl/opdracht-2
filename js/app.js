@@ -1,6 +1,5 @@
 const featureExtractor = ml5.featureExtractor('MobileNet', {numLabels:3},modelLoaded);
 const classifier = featureExtractor.classification();
-// const imageClassifier = ml5.imageClassifier('MobileNet', modelLoaded);
 let synth = window.speechSynthesis
 
 
@@ -17,14 +16,7 @@ function classifyImage(event){
     classifier.classify(document.getElementById('image'), (err, result) => showResult(result));
 }
 function showResult(result){
-  // imageClassifier.classify(document.getElementById('image'), (err, result2) => {
-  //   console.log(result2); // Should output 'dog'
-  // });;
 
-  // if(result[0].confidence < 0.6){
-  // }else{
-
-  // }
   console.log(result)
   speak(result[0].label)
   resultDiv.innerText = result[0].label
