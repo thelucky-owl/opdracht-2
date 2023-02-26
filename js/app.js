@@ -7,7 +7,7 @@ const fileCheckButton = document.querySelector("#file-check")
 const textOutput = document.querySelector("#textOutput")
 const upload = document.querySelector('#image')
 const resultDiv = document.getElementById('result')
-featureExtractor.load(filesOrPath = "../model/ml5 model.json");
+featureExtractor.load(filesOrPath = "https://thelucky-owl.github.io/opdracht-2/model/ml5 model.json");
 
 fileCheckButton.addEventListener("change", (event) =>classifyImage(event));
 speak("hello")
